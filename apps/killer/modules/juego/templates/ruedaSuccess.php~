@@ -1,0 +1,36 @@
+<pre>
+<a href="<?php echo url_for('juego/salir'); ?>">Salir</a>
+Menú lateral (blog, rueda, normas...)
+<a href="<?php echo url_for('juego/index'); ?>">Incio</a>
+<a href="<?php echo url_for('juego/rueda'); ?>">Rueda</a>
+<a href="<?php echo url_for('juego/blog'); ?>">Blog</a>
+
+
+
+<p>Canvas:</p>
+<canvas id="myCanvas" width="1000" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+var cr = 300; //radio de la circunferencia
+var x=500-70/2;
+var y=250-70/2;
+
+<?php $i=-M_PI/2; $paso = 2*M_PI/count($jugadores); ?>
+<?php foreach($jugadores as $jugador): ?>  
+	var img = new Image();
+	img.src="<?php echo image_path('killer_misterioso_peq.jpg'); ?>";
+	img.width="70";
+	img.height="70";
+	ctx.drawImage(img,Math.round(cr*Math.cos(<?php echo $i ?>))+x,Math.round(cr*Math.sin(<?php echo $i ?>))+y);
+        <?php $i = $i + $paso; ?>
+<?php endforeach ?>
+
+</script>
+
+
+</pre>
