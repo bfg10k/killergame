@@ -62,6 +62,7 @@
           <!-- File Upload -->
           <div class="controls">
             <input name="foto" class="input-file" id="fileInput" type="file">
+            <p class="help-block">La redimensionaremos a 70 x 70 píxeles.</p>
           </div>
         </div>
 

@@ -11,8 +11,9 @@
 <h1>Jugadores</h1>
 
 <?php foreach($jugadores as $jugador): ?>  
- <div style="float:left; margin:30px;">
-   <img src="<?php echo image_path('killer_misterioso_peq.jpg'); ?>" />
+ <div style="float:left; margin: 50px 0 0 0;  width:140px; height: 120px;">
+   <img width="70" style="padding:0 30px 0 10px;" src="<?php echo image_path('fotos/'.$jugador->getFoto()); ?>" />
+   <div style="text-align: left;"><?php echo $jugador->getAlias(); ?></div>
  </div>	
 <?php endforeach ?>
 

@@ -24,17 +24,16 @@
 </div>
 
 <div id="content-user">
-    <?php foreach($noticias as $noticia): ?>
-
+    <?php foreach($sf_data->getRaw('noticias') as $noticia): ?>
     <div class="span8">
         <h1><?php echo $noticia->getTitulo(); ?></h1>
+        <?php $foto = $noticia->getFotoNoticia(); if(!empty($foto)):?><img src="<?php echo image_path('../uploads/news/'.$noticia->getFotoNoticia()); ?> " /><?php endif ?>
         <p><?php echo $noticia->getNoticia(); ?></p>
         <div>
-            <span class="badge badge-success">Posted 2012-08-02 20:47:04</span>
+            <span class="badge badge-success">Publicado <?php echo $noticia->getFecha('d-m-Y H:i'); ?></span>
         </div> 
         <hr>
     </div>
-
     <?php endforeach ?>
 </div>
 

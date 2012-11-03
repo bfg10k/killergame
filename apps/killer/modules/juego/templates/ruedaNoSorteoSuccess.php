@@ -34,7 +34,7 @@ Tu navegador todavía no soporta la etiqueta canvas de HTML5.</canvas>
 
 var c=document.getElementById("myCanvas");
 var ctx=c.getContext("2d");
-<?php if($numJugadores > 15): ?>
+
 var cr = 350; //radio de la circunferencia
 var x=400-70/2;
 var y=400-70/2;
@@ -52,7 +52,7 @@ var y=400-70/2;
   ctx.fillText("<?php echo $jugador->getAlias();?>",posx,posy+92);      
   <?php $i = $i + $paso; ?>
 <?php endforeach ?>
-<?php endif?>
+
   
   ctx.font="26px Arial";
   ctx.fillText("El sorteo no se ha realizado todavía",200,400);    

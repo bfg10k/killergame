@@ -36,3 +36,6 @@ all:
 
     login_module:           visitas   # To be called when a non-authenticated user
     login_action:           index     # Tries to access a secure page
+    
+    i18n:                   on
+    default_culture:        es_ES
