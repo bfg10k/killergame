@@ -145,6 +145,13 @@ body {
   margin-top: 5px;
 }
 
+.ficha_ajax{
+  position: absolute;
+  z-index: 20;
+  background-color: whitesmoke;
+  width: 500px;
+}
+
 #confirmacionMuerteForm .control-label{
   width: 100px;
 }
