@@ -185,6 +185,23 @@ class visitasActions extends sfActions
     $criteria->addDescendingOrderByColumn(KillNoticiasPeer::ID);
     $this->noticias = KillNoticiasPeer::doSelect($criteria);
   }
+  
+  public function executeComentar(sfWebRequest $request)
+  {
+    $texto = $request->getParameter('texto');
+    if(!empty($texto))
+    {
+      $noticia = KillNoticiasPeer::retrieveByPK($request->getParameter('id_noticia',null));
+      if($noticia instanceof KillNoticias)
+      {
+        $comentario = new KillComentarios();
+        $comentario->setTexto($texto);
+        $noticia->addKillComentarios($comentario);
+        $noticia->save();
+      }
+    }
+    $this->redirect('visitas/blog');
+  }
 
   public function executeNormas(sfWebRequest $request)
   {

@@ -5,11 +5,11 @@ propel:
   kill_comentarios:
     _attributes: { phpName: KillComentarios }
     id: { phpName: Id, type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    id_jugador: { phpName: IdJugador, type: INTEGER, size: '11', required: true, foreignTable: kill_jugadores, foreignReference: id, onDelete: RESTRICT, onUpdate: CASCADE }
+    id_jugador: { phpName: IdJugador, type: INTEGER, size: '11', required: false, foreignTable: kill_jugadores, foreignReference: id, onDelete: RESTRICT, onUpdate: CASCADE }
     id_noticia: { phpName: IdNoticia, type: INTEGER, size: '11', required: true, foreignTable: kill_noticias, foreignReference: id, onDelete: RESTRICT, onUpdate: CASCADE }
     texto: { phpName: Texto, type: CLOB, required: true }
     fecha: { phpName: Fecha, type: TIMESTAMP, required: true }
-    _uniques: { id_jugador: [id_jugador], id_noticia: [id_noticia] }
+    _indexes: { id_jugador: [id_jugador], id_noticia: [id_noticia] }
   kill_departamentos:
     _attributes: { phpName: KillDepartamentos }
     id: { phpName: Id, type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -42,7 +42,7 @@ propel:
   kill_noticias:
     _attributes: { phpName: KillNoticias }
     id: { phpName: Id, type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    id_jugador: { phpName: IdJugador, type: INTEGER, size: '11', required: true, foreignTable: kill_jugadores, foreignReference: id, onDelete: RESTRICT, onUpdate: CASCADE }
+    id_jugador: { phpName: IdJugador, type: INTEGER, size: '11', required: false, foreignTable: kill_jugadores, foreignReference: id, onDelete: RESTRICT, onUpdate: CASCADE }
     fecha: { phpName: Fecha, type: TIMESTAMP, required: true }
     titulo: { phpName: Titulo, type: VARCHAR, size: '255', required: true }
     noticia: { phpName: Noticia, type: CLOB, required: true }
