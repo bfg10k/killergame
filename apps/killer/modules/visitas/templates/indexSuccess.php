@@ -19,7 +19,7 @@
 
 </div>
 
-<div id="ficha_ajax" style="position: absolute; z-index: 20; background-color: whitesmoke; width: 500px;">
+<div id="ficha_ajax">
   
 </div>
 

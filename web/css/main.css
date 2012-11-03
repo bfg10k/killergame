@@ -145,11 +145,24 @@ body {
   margin-top: 5px;
 }
 
-.ficha_ajax{
+#ficha_ajax{
   position: absolute;
   z-index: 20;
-  background-color: whitesmoke;
+  display: none;
+  border: 1px solid #DDD;
+  background-color: white;
   width: 500px;
+  padding: 5px;
+}
+
+#ficha_ajax dt{
+  margin-top: 5px;
+  width: 100px;
+}
+
+#ficha_ajax dd{
+  margin-top: 5px;
+  margin-left: 120px;
 }
 
 #confirmacionMuerteForm .control-label{
