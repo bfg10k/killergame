@@ -367,6 +367,24 @@ class juegoActions extends sfActions
     
     $this->nombre = $jugador->getNombre();
   }
+  
+  public function executeRanking(sfWebRequest $request)
+  {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    
+    $this->nombre = $jugador->getNombre();
+    
+    
+  }
 
   /**
   * Destruye la sesión y redirige al módulo de visitas

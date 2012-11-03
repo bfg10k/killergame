@@ -24,6 +24,9 @@
 </div>
 
 <div id="content-user">
+  
+<h1>Killer News</h1>
+
     <?php foreach($sf_data->getRaw('noticias') as $noticia): ?>
     <div class="span8">
         <h1><?php echo $noticia->getTitulo(); ?></h1>

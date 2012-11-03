@@ -20,15 +20,18 @@ class visitasActions extends sfActions
     $this->jugadores = KillJugadoresPeer::doSelect(new Criteria());
   }
   
+  public function executeFichaAjax(sfWebRequest $request)
+  {
+    $this->jugador = KillJugadoresPeer::retrieveByPK($request->getParameter('id',null));
+    $this->setLayout(false);
+  }
+  
   public function executeRegistro(sfWebRequest $request)
   {
       $criteria = new Criteria();
       $this->departamentos = KillDepartamentosPeer::doSelect($criteria);
       
       $this->aviso = $this->getUser()->getFlash('notice');
-      
-
-
   }
 
   public function executeRegistrado(sfWebRequest $request)
