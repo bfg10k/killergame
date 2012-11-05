@@ -26,9 +26,9 @@
 <div id="content-objetivo" class="rounded-corners">
     
     <div id="objetivo">
-<img width="70" height="70" id="foto_jugador" src="<?php echo image_path("fotos/".$jugador->getFoto()); ?>" />
+<img width="90" height="90" id="foto_jugador" class="pic-1" src="<?php echo image_path("fotos/".$jugador->getFoto()); ?>" />
 <img id="flecha_objetivo" width="122" src="<?php echo image_path("flecha_objetivo.png"); ?>" />
-<img width="70" height="70" id="foto_victima" src="<?php echo image_path("fotos/".$victima->getFoto()); ?>" />
+<img width="90" height="90" id="foto_victima" class="pic-2" src="<?php echo image_path("fotos/".$victima->getFoto()); ?>" />
 <a href="<?php echo url_for('juego/rellenarInforme'); ?>" class="btn btn-danger pull-right" title="Certifica la muerte de tu objetivo.">Objetivo cumplido</a>
     </div>
 
