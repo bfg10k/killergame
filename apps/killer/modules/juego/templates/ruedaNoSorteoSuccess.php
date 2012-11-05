@@ -42,14 +42,14 @@ var y=400-70/2;
 <?php $i=-M_PI/2; $paso = 2*M_PI/count($jugadores); ?>
 <?php foreach($jugadores as $jugador): ?>  
 	var img = new Image();
-  img.src="<?php echo image_path('fotos/'.$jugador->getFoto()); ?>";
+  img.src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>";
 	img.width="70";
 	img.height="70";
   posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
   posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
 	ctx.drawImage(img,posx,posy,70,70);
   ctx.font="16px Arial";
-  ctx.fillText("<?php echo $jugador->getAlias();?>",posx,posy+92);      
+  //ctx.fillText("<?php //echo $jugador->getAlias();?>",posx,posy+92);      
   <?php $i = $i + $paso; ?>
 <?php endforeach ?>
 

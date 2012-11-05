@@ -54,6 +54,67 @@ class juegoActions extends sfActions
   
 
   }
+  
+  public function executeSortear(sfWebRequest $request)
+  {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    
+    if($jugador->getIdVictima()==0)
+    {//Solamente en este caso se realiza el sorteo
+      $todos = KillJugadoresPeer::doSelect(new Criteria());
+      foreach($todos as $asesino)
+      {
+        $arrayasesinos[$asesino->getId()]=$asesino->getIdDepartamento();
+      }
+      
+      do {
+        $arraysorteado = $this->ashuffle($arrayasesinos);
+      } while(!$this->comprobar($arraysorteado));
+      
+      $orden = array_keys($arraysorteado);
+      foreach($orden as $pos => $idJugador)
+      {
+        $jugador = KillJugadoresPeer::retrieveByPK($idJugador);
+        $jugador->setIdVictima($orden[($pos+1)%count($orden)]);
+        $jugador->save();
+      }
+      
+    }
+    
+    $this->redirect('juego/index');
+    
+  }
+  
+  private function ashuffle($array)
+  { 
+    $keys = array_keys($array); 
+    shuffle($keys); 
+    $random = array(); 
+    foreach ($keys as $key) 
+      $random[$key] = $array[$key]; 
+    return $random;
+  }
+  
+  private function comprobar($array)
+  { 
+    $salida = true;
+    $value_ant = end($array);
+    foreach($array as $value)
+    {
+      if($value === $value_ant) return false;
+      $value_ant = $value;
+    }
+    return $salida;
+  }
 
   /**
   * Presenta informe de objetivo cumplido
