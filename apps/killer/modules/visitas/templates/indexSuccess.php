@@ -11,9 +11,9 @@
 <h1>Jugadores</h1>
 
 <?php foreach($jugadores as $jugador): ?>  
- <div style="float:left; margin: 50px 0 0 0;  width:140px; height: 140px; cursor: pointer;">
-   <img width="70" class="foto_visitas" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/'.$jugador->getFoto()); ?>" />
-   <div style="margin-top: -20px; text-align: center; font-weight: bold;"><?php echo $jugador->getAlias(); ?></div>
+ <div id="jugador">
+   <img width="70" class="foto_visitas" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/'.$jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+   <p><?php echo $jugador->getAlias(); ?></p>
  </div>	
 <?php endforeach ?>
 

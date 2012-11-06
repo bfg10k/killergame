@@ -133,6 +133,20 @@ body {
   border: 1px solid #fff;
 }
 
+#jugador{
+    float:left; 
+    margin: 50px 0 0 0;  
+    width:150px; 
+    height: 150px; 
+    cursor: pointer;
+}
+#jugador p{
+    width: 100px;
+    margin: -20px 0 0 10px;
+    text-align: left;
+    font-family: Oswald;   
+}
+
 .foto_visitas{
   padding: 10px 10px 25px 10px;
   background: #eee;
