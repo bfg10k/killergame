@@ -192,6 +192,15 @@ class juegoActions extends sfActions
 
     //Si va bien -> redirigir a executeInformeEnviado
     $victima = $jugador->getKillJugadoresRelatedByIdVictima();
+    if($victima instanceof KillJugadores)
+    {
+      $victima->getActivo();
+
+      while(!$victima->getActivo())
+      {
+        $victima = $victima->getKillJugadoresRelatedByIdVictima();
+      }     
+    }
     $victima->setConfirmacionMuerte(1);
     $victima->save();
     
@@ -199,6 +208,7 @@ class juegoActions extends sfActions
     $noticia->setIdJugador($jugador->getId());
     $noticia->setTitulo($titulo);
     $noticia->setNoticia($relato);
+    $noticia->setFecha(date());
     $noticia->save();
     
     $muerte = new KillMuertes();
@@ -359,6 +369,73 @@ class juegoActions extends sfActions
     $criteria->addDescendingOrderByColumn(KillNoticiasPeer::ID);
     $this->noticias = KillNoticiasPeer::doSelect($criteria);
   }
+  
+   /**
+  * Página de inicio de la parte privada
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeNuevoPost(sfWebRequest $request)
+  {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    
+    $this->nombre = $jugador->getNombre();
+  }
+  
+  /**
+  * Página de inicio de la parte privada
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeGrabarPost(sfWebRequest $request)
+  {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    
+    //Guardar el post. 
+    $forward_error = "juego/nuevoPost";
+    
+    $titulo = $request->getParameter('titulo');
+    if(empty($titulo)) 
+    {
+        $this->getUser()->setFlash('notice','Por favor, pon un titular al relato.');
+        $this->redirect($forward_error);
+    }
+    
+    $relato = trim($request->getParameter('relato'));
+    if(empty($relato)) 
+    {
+        $this->getUser()->setFlash('notice','Por favor, escribe un relato.');
+        $this->redirect($forward_error);
+    }
+
+    $noticia = new KillNoticias();
+    $noticia->setIdJugador($jugador->getId());
+    $noticia->setTitulo($titulo);
+    $noticia->setNoticia($relato);
+    $noticia->setFecha(date());
+    $noticia->save();   
+    
+    $this->redirect('juego/blog');
+  }
+ 
   
   public function executeNormas(sfWebRequest $request)
   {
