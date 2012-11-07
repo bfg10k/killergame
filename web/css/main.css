@@ -1,136 +1,136 @@
 body {
-        padding:0;
-	padding-bottom:20px;
-	margin: 0;
-	font-family:Verdana, Arial, Helvetica, sans-serif;
-	text-align: justify;
-	color:#333;
-        background-color:#FFF;
-        background-image:url(../images/blood_usb.jpg);
-	background-repeat:no-repeat;
-        background-position:center top;
-            /*-webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;*/
-	
+    padding:0;
+    padding-bottom:20px;
+    margin: 0;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    text-align: justify;
+    color:#333;
+    background-color:#FFF;
+    background-image:url(../images/blood_usb.jpg);
+    background-repeat:no-repeat;
+    background-position:center top;
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
+
 }
 
 #header{
-	/*height:60px;*/
-	width:1024px;
-	height:156px;
-	background-image:url(../images/killer.png);
-	background-repeat:no-repeat;
-	background-position:0 0;
-	margin:0 auto;
+    /*height:60px;*/
+    width:1024px;
+    height:156px;
+    background-image:url(../images/killer.png);
+    background-repeat:no-repeat;
+    background-position:0 0;
+    margin:0 auto;
 }
 
 #nav{
-	width:1024px;
-	margin:0 auto;
-	padding:20px 0 0 0;
-	
+    width:1024px;
+    margin:0 auto;
+    padding:20px 0 0 0;
+
 }
 
 #nav_login{
-        padding-top: 30px;
-        float:right;
+    padding-top: 30px;
+    float:right;
 }
 
 #nav-user{
-        width: 200px;
-        float: left;
-        clear: both;
+    width: 200px;
+    float: left;
+    clear: both;
 }
 
 #user{
-        float: right;
-        display: block;
-        margin: 15px 15px 10px;
-             
-        
+    float: right;
+    display: block;
+    margin: 15px 15px 10px;
+
+
 }
 
 #contador{
-        display: block;
-        padding-top: 30px;
-        float:right;
-        clear:both;
+    display: block;
+    padding-top: 30px;
+    float:right;
+    clear:both;
 }
 
 #content_killer{
-	width:1024px;
-	font-size:100%;
-	margin:0 auto;
-    	background: url("../images/content-background.png") repeat scroll 0 0 transparent;
-     	border: 1px solid #FFFFFF;
-    	min-height: 500px;
-    	padding-bottom: 25px;    		
+    width:1024px;
+    font-size:100%;
+    margin:0 auto;
+    background: url("../images/content-background.png") repeat scroll 0 0 transparent;
+    border: 1px solid #FFFFFF;
+    min-height: 500px;
+    padding-bottom: 25px;    		
 }
 
 #main_content{        
-        margin: 0 25px 0 15px;
-        
+    margin: 0 25px 0 15px;
+
 }
 
 #main_content h1, #content-user h1{
-        font-family: Oswald;
-        font-weight: 700;
-        color: #751313;
+    font-family: Oswald;
+    font-weight: 700;
+    color: #751313;
 }
 
 #main_content h2, #content-user h2{
-        font-family: Oswald;
-        font-weight: 300;
-        margin: 20px 0 15px 0;
+    font-family: Oswald;
+    font-weight: 300;
+    margin: 20px 0 15px 0;
 
 }
 
 #content-user h3{
-        font-family: Oswald;
-        font-weight: 200;
+    font-family: Oswald;
+    font-weight: 200;
 
 }
 
 
 #content-objetivo{
-        width: 780px;
-        margin: 0 15px 0 auto;
-        background-color: #F5F5F5;
-        border-style: solid;
-        border-color: #D3D3D3;
-        border-width: 1px;
-        display: block;
-        float: right;
-        padding-right: 10px;
+    width: 780px;
+    margin: 0 15px 0 auto;
+    background-color: #F5F5F5;
+    border-style: solid;
+    border-color: #D3D3D3;
+    border-width: 1px;
+    display: block;
+    float: right;
+    padding-right: 10px;
 }
 
 #content-user{
-        width: 800px;
-        margin: 0 15px 0 auto;
-        display: block;
-        float: right;
+    width: 800px;
+    margin: 0 15px 0 auto;
+    display: block;
+    float: right;
 }
 
 #objetivo{
-        width: 780px;
-        margin: 15px auto;
+    width: 780px;
+    margin: 15px auto;
 }
 
 #foto_jugador{
-  margin-left: 80px;
-  padding: 10px 10px 25px 10px;
-  background: #eee;
-  border: 1px solid #fff;
-  
+    margin-left: 80px;
+    padding: 10px 10px 25px 10px;
+    background: #eee;
+    border: 1px solid #fff;
+
 }
 
 #foto_victima{
-  margin-left: 80px;
-  padding: 10px 10px 25px 10px;
-  background: #eee;
-  border: 1px solid #fff;
+    margin-left: 80px;
+    padding: 10px 10px 25px 10px;
+    background: #eee;
+    border: 1px solid #fff;
 }
 
 #jugador{
@@ -148,10 +148,10 @@ body {
 }
 
 .foto_visitas{
-  padding: 10px 10px 25px 10px;
-  background: #eee;
-  border: 1px solid #fff;
-  width: 90px;
+    padding: 10px 10px 25px 10px;
+    background: #eee;
+    border: 1px solid #fff;
+    width: 90px;
 }
 
 .pic-1{
@@ -167,83 +167,83 @@ body {
 }
 
 #flecha_objetivo{
-  margin-left: 80px;
+    margin-left: 80px;
 }
 
 #ficha_jugador, #ficha_victima{
-        width: 650px; 
-        background-image:url(../images/clip2.png);
-        background-repeat:no-repeat;
-        font-family: Courier;
+    width: 650px; 
+    background-image:url(../images/clip2.png);
+    background-repeat:no-repeat;
+    font-family: Courier;
 }
 
 .ficha{
-        margin-top: 30px;
-        
+    margin-top: 30px;
+
 }
 
 .ficha h2{
-  margin-left: 175px;
+    margin-left: 175px;
 }
 
 .dl-horizontal dt, .dl-horizontal dd{
-  margin-top: 5px;
-  margin-right: 50px;
+    margin-top: 5px;
+    margin-right: 50px;
 }
 
 #ficha_ajax{
-  position: absolute;
-  z-index: 20;
-  display: none;
-  border: 1px solid #DDD;
-  background-color: white;
-  background-image:url(../images/clip.png);
-  background-repeat:no-repeat;
-  width: 500px;
-  padding: 5px;
-  font-family: Courier;
+    position: absolute;
+    z-index: 20;
+    display: none;
+    border: 1px solid #DDD;
+    background-color: white;
+    background-image:url(../images/clip.png);
+    background-repeat:no-repeat;
+    width: 500px;
+    padding: 5px;
+    font-family: Courier;
 }
 
 #ficha_ajax dt{
-  margin-top: 5px;
-  width: 100px;
+    margin-top: 5px;
+    width: 100px;
 }
 
 #ficha_ajax dd{
-  margin-top: 5px;
-  margin-left: 120px;
-  margin-right: 10px;
+    margin-top: 5px;
+    margin-left: 120px;
+    margin-right: 10px;
 }
 
 #confirmacionMuerteForm .control-label{
-  width: 100px;
+    width: 100px;
 }
 
 #confirmacionMuerteForm .controls{
-  margin-left: 130px;
+    margin-left: 130px;
 }
 
 
 /* Clearing the float */
 .autoclear:after{
-	content: "";
-	display:block;
-	height:0;
-	clear:both;
+    content: "";
+    display:block;
+    height:0;
+    clear:both;
 }
 
 .autoclear{
-	height:100%;
+    height:100%;
 }
 
 .alpha75 {
-        opacity: 0.75;
-        filter:alpha(opacity=75);
+    opacity: 0.75;
+    filter:alpha(opacity=75);
 }
 
 .alpha25 {
-        opacity: 0.25;
-        filter:alpha(opacity=25);
+    opacity: 0.25;
+    filter:alpha(opacity=25);
 }
 
 .rounded-corners{
@@ -252,4 +252,12 @@ body {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     -khtml-border-radius: 10px;
+}
+
+.sobre {
+    position:absolute;
+    top:0px;
+    left:0px;
+    border:none;
+    z-index: 0;
 }
