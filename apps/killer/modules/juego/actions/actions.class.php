@@ -36,7 +36,7 @@ class juegoActions extends sfActions
 
       while(!$victima->getActivo())
       {
-        $victima = $victima->getKillJugadoressRelatedByIdVictima();
+        $victima = $victima->getKillJugadoresRelatedByIdVictima();
       }     
     }
     else
@@ -206,6 +206,7 @@ class juegoActions extends sfActions
     $muerte->setIdVictima($jugador->getIdVictima());
     $muerte->setArma($arma);
     $muerte->setLugar($lugar);
+    $muerte->setFechaMuerte(date());
     $muerte->save();
     
     $this->redirect('juego/informeEnviado');
@@ -229,6 +230,59 @@ class juegoActions extends sfActions
       $this->redirect('visitas/index');
     }
     $this->nombre = $jugador->getNombre();
+  }
+
+  /**
+  * Confirma una muerte
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeConfirmarMuerte(sfWebRequest $request)
+  {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    $this->nombre = $jugador->getNombre();
+
+    //Matamos al jugador:
+    $jugador->setConfirmacionMuerte(0);
+    $jugador->setActivo(0);
+    $jugador->save();
+    
+    $this->redirect('juego/index');
+  }
+
+  /**
+  * Confirma una muerte
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeDesmentirMuerte(sfWebRequest $request)
+  {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    $this->nombre = $jugador->getNombre();
+
+    //Quitamos la marca de confirmación del jugador:
+    $jugador->setConfirmacionMuerte(0);
+    $jugador->save();
+    
+    $this->redirect('juego/index');
   }
 
   /**

@@ -25,8 +25,8 @@
 <?php if($jugador->getConfirmacionMuerte()): ?>
   <p class="alert">
     Atención, parece ser que te han matado. ¿Es eso cierto?
-    <a href="<?php echo url_for('juego/index'); ?>" class="btn btn-success">Sí, es cierto.</a>
-    <a href="<?php echo url_for('juego/index'); ?>" class="btn btn-inverse" >No, no es cierto.</a>
+    <a href="<?php echo url_for('juego/confirmarMuerte'); ?>" class="btn btn-success">Sí, es cierto.</a>
+    <a href="<?php echo url_for('juego/desmentirMuerte'); ?>" class="btn btn-inverse" >No, no es cierto.</a>
   </p>
 <?php endif ?>
 

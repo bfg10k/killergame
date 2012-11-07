@@ -63,6 +63,15 @@ var y=400-70/2;
   <?php $i = $i + $paso; ?>
 <?php endforeach ?>
 
+//La flecha de dirección de giro
+var img = new Image();
+img.src="<?php echo image_path('flecha_rueda.png'); ?>";
+posx = 530;
+posy = 180;
+ctx.drawImage(img,posx,posy,70,70);
+
+
+
 </script>
 </div>
 

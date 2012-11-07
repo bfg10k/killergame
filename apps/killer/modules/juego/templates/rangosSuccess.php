@@ -23,13 +23,14 @@
 </div>
      
 <div id="content-user">
+    <h1>Escala de maldad</h1>
   <div id="rangos">
-    <dt>Don</dt><dl>Es el jefe de la familia.</dl>
-    <dt>Sottocapo</dt><dl>Es la mano derecha del jefe. Hace de Don en caso de que esté incapacitado.</dl>
-    <dt>Consigliere</dt><dl>Es el consejero del Don, le asesora en decisiones importantes.</dl>
-    <dt>Caporegime</dt><dl>Es el superior al Capodecime.</dl>
-    <dt>Capodecime</dt><dl>Dirige a una decena de hombres.</dl>
-    <dt>Soldato</dt><dl>Son los conocidos sicarios de la mafia.</dl>
-    <dt>Associato</dt><dl>Aspirantes a soldatto, aun no han sido admitidos en la familia.</dl>
+    <img src="<?php echo image_path('../images/don.png'); ?>"width="130" style=" float: left;"/><dt>Don</dt><dl>Es el jefe de la familia.</dl>
+    <img src="<?php echo image_path('../images/sottocapo.png'); ?>"width="80" style="float: left;"/><dt>Sottocapo</dt><dl>Es la mano derecha del jefe. Hace de Don en caso de que esté incapacitado.</dl>
+    <img src="<?php echo image_path('../images/consigliere.png'); ?>"width="65" style="float: left;"/><dt>Consigliere</dt><dl>Es el consejero del Don, le asesora en decisiones importantes.</dl>
+    <img src="<?php echo image_path('../images/capo.png'); ?>"width="80" style="float: left;"/><dt>Caporegime</dt><dl>Es el superior al Capodecime.</dl>
+    <img src="<?php echo image_path('../images/capo.png'); ?>"width="75" style="float: left;"/><dt>Capodecime</dt><dl>Dirige a una decena de hombres.</dl>
+    <img src="<?php echo image_path('../images/soldato.png'); ?>"width="70" style="float: left;"/><dt>Soldato</dt><dl>Son los conocidos sicarios de la mafia.</dl>
+    <img src="<?php echo image_path('../images/associato.png'); ?>"width="65" style="float: left;"/><dt>Associato</dt><dl>Aspirantes a soldato, aún no han sido admitidos en la familia.</dl>
   </div>
 </div>
