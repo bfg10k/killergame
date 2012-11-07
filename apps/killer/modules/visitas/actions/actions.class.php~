@@ -20,15 +20,21 @@ class visitasActions extends sfActions
     $this->jugadores = KillJugadoresPeer::doSelect(new Criteria());
   }
   
+  public function executeFichaAjax(sfWebRequest $request)
+  {
+    $this->jugador = KillJugadoresPeer::retrieveByPK($request->getParameter('id',null));
+    $this->setLayout(false);
+  }
+  
   public function executeRegistro(sfWebRequest $request)
   {
+      if(time() >= strtotime('7 November 2012'))
+        $this->redirect('visitas/index');
+
       $criteria = new Criteria();
       $this->departamentos = KillDepartamentosPeer::doSelect($criteria);
       
       $this->aviso = $this->getUser()->getFlash('notice');
-      
-
-
   }
 
   public function executeRegistrado(sfWebRequest $request)
@@ -96,13 +102,30 @@ class visitasActions extends sfActions
     
     
     $fileName = $request->getFiles('foto');
-    //print_r($fotos);exit;
+    //print_r($fileName);exit;
 
     $fileSize = $fileName['size'];
     if($fileSize <= 0)
     {
         $this->getUser()->setFlash('notice','La foto es obligatoria');
         $this->redirect('visitas/registro');
+    }
+    
+    switch($fileName['type'])
+    {
+      case 'image/jpeg':
+        $ext = 'jpg';
+        break;
+      case 'image/png':
+        $ext = 'png';
+        break;
+      case 'image/gif':
+        $ext = 'gif';
+        break;
+      default: 
+        $this->getUser()->setFlash('notice','La foto debe tener extensión jpg, gif o png');
+        $this->redirect('visitas/registro');
+        break;
     }
     
     if($fileSize > 100000)
@@ -154,14 +177,33 @@ class visitasActions extends sfActions
     
     $idjugador = $jugador_nuevo->getId();
     
-    move_uploaded_file($fileName['tmp_name'], "$fotosDir/foto$idjugador");
-    $jugador_nuevo->setFoto("$fotosDir/foto$idjugador");
+    move_uploaded_file($fileName['tmp_name'], "$fotosDir/foto$idjugador.$ext");
+    $jugador_nuevo->setFoto("foto$idjugador.$ext");
     $jugador_nuevo->save();
   }
 
   public function executeBlog(sfWebRequest $request)
   {
-
+    $criteria = new Criteria();
+    $criteria->addDescendingOrderByColumn(KillNoticiasPeer::ID);
+    $this->noticias = KillNoticiasPeer::doSelect($criteria);
+  }
+  
+  public function executeComentar(sfWebRequest $request)
+  {
+    $texto = $request->getParameter('texto');
+    if(!empty($texto))
+    {
+      $noticia = KillNoticiasPeer::retrieveByPK($request->getParameter('id_noticia',null));
+      if($noticia instanceof KillNoticias)
+      {
+        $comentario = new KillComentarios();
+        $comentario->setTexto($texto);
+        $noticia->addKillComentarios($comentario);
+        $noticia->save();
+      }
+    }
+    $this->redirect('visitas/blog');
   }
 
   public function executeNormas(sfWebRequest $request)
