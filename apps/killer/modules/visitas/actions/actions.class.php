@@ -28,6 +28,9 @@ class visitasActions extends sfActions
   
   public function executeRegistro(sfWebRequest $request)
   {
+      if(time() >= strtotime('7 November 2012'))
+        $this->redirect('visitas/index');
+
       $criteria = new Criteria();
       $this->departamentos = KillDepartamentosPeer::doSelect($criteria);
       
@@ -36,6 +39,9 @@ class visitasActions extends sfActions
 
   public function executeRegistrado(sfWebRequest $request)
   {
+    if(time() >= strtotime('7 November 2012'))
+        $this->redirect('visitas/index');
+
     $nombre = $request->getParameter('nombre');
     if(empty($nombre)) 
     {
