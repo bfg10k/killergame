@@ -79,8 +79,8 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                     img.src="<?php echo image_path('fotos/eliminado.png'); ?>";
                     img.width="70";
                     img.height="70";
-                    posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
-                    posy = Math.round(cSr*Math.sin(<?php echo $i ?>))+y;
+//                    posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+//                    posy = Math.round(cSr*Math.sin(<?php echo $i ?>))+y;
                     ctx.drawImage(img,posx,posy,70,70);
         <?php else: ?>
             <?php $victimaEncontrada = true; ?>
