@@ -135,6 +135,8 @@ class juegoActions extends sfActions
     }
     $this->nombre = $jugador->getNombre();
     
+    $this->aviso = $this->getUser()->getFlash('notice');
+    
   }
 
   /**
@@ -146,10 +148,66 @@ class juegoActions extends sfActions
   */
   public function executeGuardarInforme(sfWebRequest $request)
   {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    
     //Guardar el informe. 
-    //Si va mal -> volver a presentar executeRellenarInforme
-    $this->redirect('juego/rellenarInforme');
+    $forward_error = "juego/rellenarInforme";
+    
+    $lugar = $request->getParameter('lugar');
+    if(empty($lugar)) 
+    {
+        $this->getUser()->setFlash('notice','Por favor, indica el lugar en el que ocurrio la "tragedia".');
+        $this->redirect($forward_error);
+    }
+    
+    $arma = $request->getParameter('arma');
+    if(empty($arma)) 
+    {
+        $this->getUser()->setFlash('notice','Por favor, indica el arma o método utilizado.');
+        $this->redirect($forward_error);
+    }
+    
+    $titulo = $request->getParameter('titulo');
+    if(empty($titulo)) 
+    {
+        $this->getUser()->setFlash('notice','Por favor, pon un titular al relato.');
+        $this->redirect($forward_error);
+    }
+    
+    $relato = trim($request->getParameter('relato'));
+    if(empty($relato)) 
+    {
+        $this->getUser()->setFlash('notice','Por favor, escribe un relato.');
+        $this->redirect($forward_error);
+    }
+
     //Si va bien -> redirigir a executeInformeEnviado
+    $victima = $jugador->getKillJugadoresRelatedByIdVictima();
+    $victima->setConfirmacionMuerte(1);
+    $victima->save();
+    
+    $noticia = new KillNoticias();
+    $noticia->setIdJugador($jugador->getId());
+    $noticia->setTitulo($titulo);
+    $noticia->setNoticia($relato);
+    $noticia->save();
+    
+    $muerte = new KillMuertes();
+    $muerte->setIdAsesino($jugador->getId());
+    $muerte->setIdVictima($jugador->getIdVictima());
+    $muerte->setArma($arma);
+    $muerte->setLugar($lugar);
+    $muerte->save();
+    
     $this->redirect('juego/informeEnviado');
   }
 
@@ -193,11 +251,11 @@ class juegoActions extends sfActions
     
     $this->nombre = $jugador->getNombre();
     
-    //Antes del sorteo vale esta consulta
-    $this->jugadores = KillJugadoresPeer::doSelect(new Criteria());
-    $this->numJugadores = count($this->jugadores);
-    $this->setTemplate('ruedaNoSorteo');
-    return "Success"; 
+//    //Antes del sorteo vale esta consulta
+//    $this->jugadores = KillJugadoresPeer::doSelect(new Criteria());
+//    $this->numJugadores = count($this->jugadores);
+//    $this->setTemplate('ruedaNoSorteo');
+//    return "Success"; 
 
     //Para después del sorteo la rueda se tiene que dibujar en orden
     $id_jugador = $this->getUser()->getAttribute('user_id',null);
@@ -211,8 +269,12 @@ class juegoActions extends sfActions
       $this->redirect('visitas/index');
     }
 
+    $this->jugador = $jugador;
+    $this->otrosjugadores = array();
+    $jugador = $jugador->getKillJugadoresRelatedByIdVictima();
     do {
-      $this->jugadores[] = array('id'=>$jugador->getId(),'alias'=>$jugador->getAlias(),'foto'=>$jugador->getFoto());
+      //$this->jugadores[] = array('id'=>$jugador->getId(),'alias'=>$jugador->getAlias(),'foto'=>$jugador->getFoto());
+      $this->otrosjugadores[] = $jugador;
       $jugador = $jugador->getKillJugadoresRelatedByIdVictima();
     } while($jugador->getId()!=$id_jugador);
     

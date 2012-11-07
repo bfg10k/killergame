@@ -31,10 +31,22 @@
     <fieldset>
       <legend>Relata con todo lujo de detalles macabros cómo sucedió todo...</legend>
       
+      <?php if(!empty($aviso)): ?>
+        <p class="alert"><?php echo $aviso; ?></p>
+      <?php endif ?>
+      
+        <div class="control-group">
+          <label class="control-label" for="input01">Lugar</label>
+          <div class="controls">
+            <input type="text" name="lugar" placeholder="Lugar de los hechos" class="input-xxlarge">
+            <p class="help-block">Indica el lugar en el que ocurrio la "tragedia".</p>
+          </div>
+        </div>
+        
        <div class="control-group">
           <label class="control-label" for="input01">Arma</label>
           <div class="controls">
-            <input type="text" placeholder="Arma/método" class="input-xxlarge">
+            <input type="text" name="arma" placeholder="Arma/método" class="input-xxlarge">
             <p class="help-block">Indica el arma o método utilizado.</p>
           </div>
         </div>
@@ -42,7 +54,7 @@
     <div class="control-group">
           <label class="control-label" for="input01">Titular</label>
           <div class="controls">
-            <input type="text" placeholder="Titular del relato" class="input-xxlarge">
+            <input type="text" name="titulo" placeholder="Titular del relato" class="input-xxlarge">
             <p class="help-block">Escribe un titular para el relato del asesinato.</p>
           </div>
         </div>
@@ -51,7 +63,7 @@
           <label class="control-label">Relato</label>
           <div class="controls">
             <div class="textarea">
-                  <textarea type="" class="input-xxlarge" style=" height: 180px; "> </textarea>
+                  <textarea name="relato" class="input-xxlarge" style=" height: 180px; "> </textarea>
             </div>
           </div>
         </div>
