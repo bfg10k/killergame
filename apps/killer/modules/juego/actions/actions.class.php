@@ -378,7 +378,43 @@ class juegoActions extends sfActions
     $this->noticias = KillNoticiasPeer::doSelect($criteria);
   }
   
-   /**
+  /**
+  * Página de inicio de la parte privada
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeComentar(sfWebRequest $request)
+  {
+    $id_jugador = $this->getUser()->getAttribute('user_id',null);
+    if(is_null($id_jugador)) $this->redirect('visitas/index');
+
+    $c = new Criteria();
+    $c->add(KillJugadoresPeer::ID,$id_jugador);
+    $jugador = KillJugadoresPeer::doSelectOne($c);
+    if(!($jugador instanceof KillJugadores))
+    {
+      $this->redirect('visitas/index');
+    }
+    
+    $this->nombre = $jugador->getNombre();
+    
+    
+    $texto = $request->getParameter('texto');
+    if(!empty($texto))
+    {
+      $noticia = KillNoticiasPeer::retrieveByPK($request->getParameter('id_noticia',null));
+      if($noticia instanceof KillNoticias)
+      {
+        $comentario = new KillComentarios();
+        $comentario->setTexto($texto);
+        $noticia->addKillComentarios($comentario);
+        $noticia->save();
+      }
+    }
+    $this->redirect('juego/blog');
+  }
+  
+  /**
   * Página de inicio de la parte privada
   *
   * @param sfRequest $request A request object

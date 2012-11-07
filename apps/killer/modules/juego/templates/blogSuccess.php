@@ -18,6 +18,7 @@
     <li><a href="<?php echo url_for('juego/index'); ?>"><i class="icon-home"></i> Inicio</a></li>
     <li><a href="<?php echo url_for('juego/rueda'); ?>"><i class="icon-screenshot"></i> Rueda de objetivos</a></li>
     <li class="active"><a href="<?php echo url_for('juego/blog'); ?>"><i class="icon-eye-open"></i> Killer News</a></li>
+    <li><a href="<?php echo url_for('juego/nuevoPost'); ?>"><i class="icon-pencil"></i>Escribe en el blog</a></li> 
     <li><a href="<?php echo url_for('juego/normas'); ?>"><i class="icon-align-justify"></i> Normativa</a></li>
     <li><a href="<?php echo url_for('juego/rangos'); ?>"><i class="icon-certificate"></i> Rango mafioso</a></li>
     </ul>
@@ -34,9 +35,34 @@
         <p><?php echo $noticia->getNoticia(); ?></p>
         <div>
             <span class="badge badge-success">Publicado <?php echo $noticia->getFecha('d-m-Y H:i'); ?></span>
+            <span class="badge badge-success badge-comentarios"><?php echo $noticia->countKillComentarioss(); ?> comentarios</span>
         </div> 
-        <hr>
+        <div id="div_comentarios" class="span4" style="float:right; text-align: right; display: none;">
+          <?php foreach($noticia->getKillComentarioss() as $comentario): ?>
+              <?php echo $comentario->getTexto(); ?>
+              <hr/>
+          <?php endforeach ?>
+          <div id="new_comment">
+            <form method="POST" action="<?php echo url_for('juego/comentar')?>">
+              <input type="hidden" name="id_noticia" value="<?php echo $noticia->getId(); ?>" />
+              <textarea name="texto" class="input-xlarge"></textarea>
+              <button type="submit" class="btn btn-success">Comentar de forma anónima</button>
+            </form>
+          </div>
+        </div>
+        <hr class="span8" />
     </div>
-    <?php endforeach ?>
+<?php endforeach ?>
+
+
 </div>
+
+
+<script>
+$(document).ready(function(){
+  $(".badge-comentarios").click(function(eventData,handler){
+    $(this).parent().parent().children("#div_comentarios").toggle();
+  });
+});
+</script>
 
