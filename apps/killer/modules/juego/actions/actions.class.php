@@ -27,6 +27,14 @@ class juegoActions extends sfActions
     {
       $this->redirect('visitas/index');
     }
+    
+    if($jugador->getActivo() === 0)
+    {
+      $this->setTemplate ('indexMuerto');
+      $this->jugador=$jugador;
+      $this->nombre = $jugador->getNombre();
+      return "Success";
+    }
    
     
     $victima = $jugador->getKillJugadoresRelatedByIdVictima();
