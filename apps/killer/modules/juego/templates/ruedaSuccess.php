@@ -49,13 +49,24 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
         posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
         posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
         ctx.drawImage(img,posx,posy,70,70);
+        
+        <?php if($jugador->getActivo() === 0):?>
+                    var img = new Image();
+                    img.src="<?php echo image_path('fotos/eliminado.png'); ?>";
+                    img.width="70";
+                    img.height="70";
+                    posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+                    posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
+                    ctx.drawImage(img,posx,posy,70,70);
+        <?php endif; ?>
+        
         //ctx.font="16px Arial";
         //ctx.fillText("<?php //echo $jugador->getAlias(); ?>",posx,posy+92);      
 <?php $i = $i + $paso; ?>
 <?php $victimaEncontrada = false; ?>
 <?php foreach ($otrosjugadores as $otrojugador): ?>
 
-    <?php if ($victimaEncontrada && $otrojugador->getActivo() === 1): ?>
+    <?php if ($jugador->getActivo() === 0 || $victimaEncontrada && $otrojugador->getActivo() === 1): ?>
                         var img = new Image();
                         img.src="<?php echo image_path('killer_misterioso_peq.jpg'); ?>";
                         img.width="70";
@@ -65,24 +76,24 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                         ctx.drawImage(img,posx,posy,70,70);
                         //ctx.font="16px Arial";
                         //ctx.fillText("<?php //echo $otrojugador->getAlias(); ?>",posx,posy+92);
-    <?php else: ?> 
-        <?php if ($otrojugador->getActivo() === 0): ?>
-                    var img = new Image();
-                    img.src="<?php echo image_path('fotos/' . $otrojugador->getFoto()); ?>";
-                    img.width="70";
-                    img.height="70";
-                    posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
-                    posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
-                    ctx.drawImage(img,posx,posy,70,70);
-                    
-                    var img = new Image();
-                    img.src="<?php echo image_path('fotos/eliminado.png'); ?>";
-                    img.width="70";
-                    img.height="70";
-//                    posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
-//                    posy = Math.round(cSr*Math.sin(<?php echo $i ?>))+y;
-                    ctx.drawImage(img,posx,posy,70,70);
-        <?php else: ?>
+//    <?php //else: ?> 
+//        <?php //if ($otrojugador->getActivo() === 0): ?>
+//                    var img = new Image();
+//                    img.src="<?php //echo image_path('fotos/' . $otrojugador->getFoto()); ?>";
+//                    img.width="70";
+//                    img.height="70";
+//                    posx = Math.round(cr*Math.cos(<?php //echo $i ?>))+x;
+//                    posy = Math.round(cr*Math.sin(<?php //echo $i ?>))+y;
+//                    ctx.drawImage(img,posx,posy,70,70);
+//                    
+//                    var img = new Image();
+//                    img.src="<?php //echo image_path('fotos/eliminado.png'); ?>";
+//                    img.width="70";
+//                    img.height="70";
+//                    posx = Math.round(cr*Math.cos(<?php //echo $i ?>))+x;
+//                    posy = Math.round(cr*Math.sin(<?php //echo $i ?>))+y;
+//                    ctx.drawImage(img,posx,posy,70,70);
+//        <?php else: ?>
             <?php $victimaEncontrada = true; ?>
                 var img = new Image();
                 img.src="<?php echo image_path('fotos/' . $otrojugador->getFoto()); ?>";
@@ -91,8 +102,34 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                 posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
                 posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
                 ctx.drawImage(img,posx,posy,70,70);
-        <?php endif; ?>
+        <?php //endif; ?>
     <?php endif; ?>
+    <?php $numMuertes = $otrojugador->countKillMuertessRelatedByIdAsesino();?>
+    <?php if($numMuertes <= 2): ?>
+                var img = new Image();
+                img.src="<?php echo image_path('fotos/muertes'.$numMuertes.'.png'); ?>";
+                img.width="70";
+                img.height="70";
+                posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+                posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
+                ctx.drawImage(img,posx,posy,70,70);
+    <?php elseif($numMuertes > 2 && $numMuertes <=4):?>
+                var img = new Image();
+                img.src="<?php echo image_path('fotos/muertes/2+.png'); ?>";
+                img.width="70";
+                img.height="70";
+                posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+                posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
+                ctx.drawImage(img,posx,posy,70,70);
+    <?php elseif($numMuertes > 4):?>
+                var img = new Image();
+                img.src="<?php echo image_path('fotos/muertes/overkill.png'); ?>";
+                img.width="70";
+                img.height="70";
+                posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+                posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
+                ctx.drawImage(img,posx,posy,70,70);
+    <?php endif;?>
     <?php $i = $i + $paso; ?>
 <?php endforeach ?>
 
@@ -103,5 +140,23 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
         posy = 180;
         ctx.drawImage(img,posx,posy,70,70);
     </script>
+</div>
+
+<div id="losers" style="display: inline-block">
+    <h1>Los que nos han dejado</h1>
+
+    <?php foreach ($muertos as $jugador): ?>  
+            <?php //calculo de la altura del div auxiliar?>
+            <?php $datosImg = getimagesize(image_path('fotos/' . $jugador->getFoto(), true)) ?>
+            <?php $altoImg = round(($datosImg[1] * 70) / $datosImg[0]) ?>
+            <div id="jugador">
+                <div id="muerto" style="position: relative; height: <?php echo $altoImg;?>">
+                    <img width="70" class="sobre foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/eliminado.png'); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+                    <img width="70" class="foto_visitas foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+                </div>
+                <p style="position: relative; bottom: 0px;"><?php echo $jugador->getAlias(); ?></p>
+            </div>
+    <?php endforeach ?>
+
 </div>
 
