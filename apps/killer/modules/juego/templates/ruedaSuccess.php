@@ -59,6 +59,32 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                     posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
                     ctx.drawImage(img,posx,posy,70,70);
         <?php endif; ?>
+    <?php $numMuertes = $jugador->countKillMuertessRelatedByIdAsesino();?>
+    <?php if($numMuertes <= 2): ?>
+                var img = new Image();
+                img.src="<?php echo image_path('muertes/'.$numMuertes.'.png'); ?>";
+                img.width="70";
+                img.height="70";
+                posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+                posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
+                ctx.drawImage(img,posx,posy,70,70);
+    <?php elseif($numMuertes > 2 && $numMuertes <=4):?>
+                var img = new Image();
+                img.src="<?php echo image_path('muertes/2+.png'); ?>";
+                img.width="70";
+                img.height="70";
+                posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+                posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
+                ctx.drawImage(img,posx,posy,70,70);
+    <?php elseif($numMuertes > 4):?>
+                var img = new Image();
+                img.src="<?php echo image_path('muertes/overkill.png'); ?>";
+                img.width="70";
+                img.height="70";
+                posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+                posy = Math.round(cr*Math.sin(<?php echo $i ?>))+y;
+                ctx.drawImage(img,posx,posy,70,70);
+    <?php endif;?>
         
         //ctx.font="16px Arial";
         //ctx.fillText("<?php //echo $jugador->getAlias(); ?>",posx,posy+92);      
@@ -66,9 +92,9 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
 <?php $victimaEncontrada = false; ?>
 <?php foreach ($otrosjugadores as $otrojugador): ?>
 
-    <?php if ($jugador->getActivo() === 0 || $victimaEncontrada && $otrojugador->getActivo() === 1): ?>
+    <?php if ($victimaEncontrada): ?>
                         var img = new Image();
-                        img.src="<?php echo image_path('killer_misterioso_peq.jpg'); ?>";
+                        img.src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>";
                         img.width="70";
                         img.height="70";
                         posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
@@ -107,7 +133,7 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
     <?php $numMuertes = $otrojugador->countKillMuertessRelatedByIdAsesino();?>
     <?php if($numMuertes <= 2): ?>
                 var img = new Image();
-                img.src="<?php echo image_path('fotos/muertes'.$numMuertes.'.png'); ?>";
+                img.src="<?php echo image_path('muertes/'.$numMuertes.'.png'); ?>";
                 img.width="70";
                 img.height="70";
                 posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
@@ -115,7 +141,7 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                 ctx.drawImage(img,posx,posy,70,70);
     <?php elseif($numMuertes > 2 && $numMuertes <=4):?>
                 var img = new Image();
-                img.src="<?php echo image_path('fotos/muertes/2+.png'); ?>";
+                img.src="<?php echo image_path('muertes/2+.png'); ?>";
                 img.width="70";
                 img.height="70";
                 posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
@@ -123,7 +149,7 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                 ctx.drawImage(img,posx,posy,70,70);
     <?php elseif($numMuertes > 4):?>
                 var img = new Image();
-                img.src="<?php echo image_path('fotos/muertes/overkill.png'); ?>";
+                img.src="<?php echo image_path('muertes/overkill.png'); ?>";
                 img.width="70";
                 img.height="70";
                 posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
@@ -140,9 +166,8 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
         posy = 180;
         ctx.drawImage(img,posx,posy,70,70);
     </script>
-</div>
-
-<div id="losers" style="display: inline-block">
+    
+    <div id="losers" style="display: inline-block; float:left;">
     <h1>Los que nos han dejado</h1>
 
     <?php foreach ($muertos as $jugador): ?>  
@@ -158,5 +183,8 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
             </div>
     <?php endforeach ?>
 
+    </div>
 </div>
+
+
 
