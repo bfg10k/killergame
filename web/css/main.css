@@ -261,3 +261,7 @@ body {
     border:none;
     z-index: 0;
 }
+
+.badge-comentarios{
+    cursor:pointer;
+}

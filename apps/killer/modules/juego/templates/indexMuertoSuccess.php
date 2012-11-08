@@ -23,21 +23,15 @@
     </ul>
 </div>
   
-<?php if($jugador->getConfirmacionMuerte()): ?>
   <p class="alert">
-    Atención, parece ser que te han matado. ¿Es eso cierto?
-    <a href="<?php echo url_for('juego/confirmarMuerte'); ?>" class="btn btn-success">Sí, es cierto.</a>
-    <a href="<?php echo url_for('juego/desmentirMuerte'); ?>" class="btn btn-inverse" >No, no es cierto.</a>
+    Estás muerta/o.
   </p>
-<?php endif ?>
+
 
 <div id="content-objetivo" class="rounded-corners">
     
     <div id="objetivo">
 <img width="90" height="90" id="foto_jugador" class="pic-1" src="<?php echo image_path("fotos/".$jugador->getFoto()); ?>" />
-<img id="flecha_objetivo" width="122" src="<?php echo image_path("flecha_objetivo.png"); ?>" />
-<img width="90" height="90" id="foto_victima" class="pic-2" src="<?php echo image_path("fotos/".$victima->getFoto()); ?>" />
-<a href="<?php echo url_for('juego/rellenarInforme'); ?>" class="btn btn-danger pull-right" title="Certifica la muerte de tu objetivo.">Objetivo cumplido</a>
     </div>
 
   <div id="ficha_jugador" class="ficha">  
@@ -51,30 +45,9 @@
 </dl>
   </div>
   
-  <div id="ficha_victima"  class="ficha" style="display: none;">  
-    <h2>La ficha de tu víctima</h2>
-<dl class="dl-horizontal">
-  <dt>Nombre</dt><dd><?php echo $victima->getNombre(); ?> alias "<?php echo $victima->getAlias();?>"</dd>
-  <dt>Casa</dt><dd><?php echo $victima->getKillDepartamentos();?></dd>
-  <dt>Asesinatos</dt><dd><?php echo $victima->countKillMuertessRelatedByIdAsesino(); ?></dd>
-  <dt>Rango</dt><dd><?php echo $victima->getRango(); ?></dd>
-  <dt>Biografía</dt><dd><?php echo $sf_data->getRaw('victima')->getDescripcion(); ?></dd>
-</dl>
-  </div>
+  
 
 
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-  $("#foto_jugador").click(function(){
-    $("#ficha_victima").hide();
-    $("#ficha_jugador").show();
-  });
-  $("#foto_victima").click(function(){
-    $("#ficha_jugador").hide();
-    $("#ficha_victima").show();
-  });
-});  
-</script>
-  
+

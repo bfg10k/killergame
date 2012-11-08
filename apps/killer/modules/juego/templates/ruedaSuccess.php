@@ -18,6 +18,7 @@
         <li><a href="<?php echo url_for('juego/index'); ?>"><i class="icon-home"></i> Inicio</a></li>
         <li class="active"><a href="<?php echo url_for('juego/rueda'); ?>"><i class="icon-screenshot icon-white"></i> Rueda de objetivos</a></li>
         <li><a href="<?php echo url_for('juego/blog'); ?>"><i class="icon-eye-open"></i> Killer News</a></li> 
+        <li><a href="<?php echo url_for('juego/nuevoPost'); ?>"><i class="icon-pencil"></i>Escribe en el blog</a></li> 
         <li><a href="<?php echo url_for('juego/normas'); ?>"><i class="icon-align-justify"></i> Normativa</a></li>
         <li><a href="<?php echo url_for('juego/rangos'); ?>"><i class="icon-certificate"></i> Rango mafioso</a></li>
 
@@ -78,8 +79,8 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                     img.src="<?php echo image_path('fotos/eliminado.png'); ?>";
                     img.width="70";
                     img.height="70";
-                    posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
-                    posy = Math.round(cSr*Math.sin(<?php echo $i ?>))+y;
+//                    posx = Math.round(cr*Math.cos(<?php echo $i ?>))+x;
+//                    posy = Math.round(cSr*Math.sin(<?php echo $i ?>))+y;
                     ctx.drawImage(img,posx,posy,70,70);
         <?php else: ?>
             <?php $victimaEncontrada = true; ?>
