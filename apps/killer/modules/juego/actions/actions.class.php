@@ -320,10 +320,11 @@ class juegoActions extends sfActions {
             if ($jugador->getActivo() === 1) {
                 $this->otrosjugadores[] = $jugador;
             }else{
-                $this->muertos[] = $jugador;
+                $this->muertos[$jugador->countKillMuertessRelatedByIdAsesino()][] = $jugador;
             }
             $jugador = $jugador->getKillJugadoresRelatedByIdVictima();
         } while ($jugador->getId() != $id_jugador);
+
     }
 
     /**

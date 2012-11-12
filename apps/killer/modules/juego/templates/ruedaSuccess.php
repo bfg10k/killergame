@@ -92,7 +92,7 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
 <?php $victimaEncontrada = false; ?>
 <?php foreach ($otrosjugadores as $otrojugador): ?>
 
-    <?php if ($victimaEncontrada): ?>
+    <?php if ($victimaEncontrada || $jugador->getActivo() === 0): ?>
                         var img = new Image();
                         img.src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>";
                         img.width="70";
@@ -119,7 +119,7 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
 //                    posx = Math.round(cr*Math.cos(<?php //echo $i ?>))+x;
 //                    posy = Math.round(cr*Math.sin(<?php //echo $i ?>))+y;
 //                    ctx.drawImage(img,posx,posy,70,70);
-//        <?php else: ?>
+            <?php else: ?>
             <?php $victimaEncontrada = true; ?>
                 var img = new Image();
                 img.src="<?php echo image_path('fotos/' . $otrojugador->getFoto()); ?>";
@@ -169,8 +169,8 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
     
     <div id="losers" style="display: inline-block; float:left;">
     <h1>Los que nos han dejado</h1>
-
-    <?php foreach ($muertos as $jugador): ?>  
+    <?php foreach ($muertos as $rango => $jugadores): ?>  
+        <?php foreach ($jugadores as $jugador): ?>  
             <?php //calculo de la altura del div auxiliar?>
             <?php $datosImg = getimagesize(image_path('fotos/' . $jugador->getFoto(), true)) ?>
             <?php $altoImg = round(($datosImg[1] * 70) / $datosImg[0]) ?>
@@ -181,6 +181,7 @@ $paso = 2 * M_PI / (count($otrosjugadores) + 1); ?>
                 </div>
                 <p style="position: relative; bottom: 0px;"><?php echo $jugador->getAlias(); ?></p>
             </div>
+        <?php endforeach ?>
     <?php endforeach ?>
 
     </div>
