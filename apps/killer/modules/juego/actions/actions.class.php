@@ -627,6 +627,26 @@ class juegoActions extends sfActions {
         }
 
         $this->nombre = $jugador->getNombre();
+        
+        $conexion = Propel::getConnection();
+
+        $sql = "SELECT kill_jugadores.id as id_jugador, count(*) as num_muertes 
+                FROM kill_jugadores INNER JOIN kill_muertes
+                  ON kill_jugadores.id = kill_muertes.id_asesino
+                GROUP BY id_jugador
+                ORDER BY num_muertes desc, activo asc
+               ;";
+
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+
+        $ranking = array();
+        while($tRegistro = $sentencia->fetch())
+        {
+             $ranking[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
+        }
+        $this->ranking = $ranking;
+ 
     }
 
     /**
