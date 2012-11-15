@@ -614,7 +614,7 @@ class juegoActions extends sfActions {
         $this->nombre = $jugador->getNombre();
     }
 
-    public function executeRanking(sfWebRequest $request) {
+    public function executeRankingv1(sfWebRequest $request) {
         $id_jugador = $this->getUser()->getAttribute('user_id', null);
         if (is_null($id_jugador))
             $this->redirect('visitas/index');
@@ -646,6 +646,133 @@ class juegoActions extends sfActions {
              $ranking[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
         }
         $this->ranking = $ranking;
+ 
+    }
+    
+    public function executeRanking(sfWebRequest $request) {
+        $id_jugador = $this->getUser()->getAttribute('user_id', null);
+        if (is_null($id_jugador))
+            $this->redirect('visitas/index');
+
+        $c = new Criteria();
+        $c->add(KillJugadoresPeer::ID, $id_jugador);
+        $jugador = KillJugadoresPeer::doSelectOne($c);
+        if (!($jugador instanceof KillJugadores)) {
+            $this->redirect('visitas/index');
+        }
+
+        $this->nombre = $jugador->getNombre();
+        
+        
+        $conexion = Propel::getConnection();
+
+        $sql = "SELECT kill_jugadores.id as id_jugador, count(*) as num_muertes 
+                FROM kill_jugadores INNER JOIN kill_muertes
+                  ON kill_jugadores.id = kill_muertes.id_asesino
+                GROUP BY id_jugador
+                HAVING num_muertes > 5
+                ORDER BY num_muertes desc, activo asc
+               ;";
+
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+
+        $ranking6 = array();
+        while($tRegistro = $sentencia->fetch())
+        {
+             $ranking6[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
+        }
+        
+        $sql = "SELECT kill_jugadores.id as id_jugador, count(*) as num_muertes 
+                FROM kill_jugadores INNER JOIN kill_muertes
+                  ON kill_jugadores.id = kill_muertes.id_asesino
+                GROUP BY id_jugador
+                HAVING num_muertes = 5
+                ORDER BY num_muertes desc, activo asc
+               ;";
+
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+
+        $ranking5 = array();
+        while($tRegistro = $sentencia->fetch())
+        {
+             $ranking5[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
+        }
+        
+        $sql = "SELECT kill_jugadores.id as id_jugador, count(*) as num_muertes 
+                FROM kill_jugadores INNER JOIN kill_muertes
+                  ON kill_jugadores.id = kill_muertes.id_asesino
+                GROUP BY id_jugador
+                HAVING num_muertes = 4
+                ORDER BY num_muertes desc, activo asc
+               ;";
+
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+
+        $ranking4 = array();
+        while($tRegistro = $sentencia->fetch())
+        {
+             $ranking4[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
+        }
+        
+        $sql = "SELECT kill_jugadores.id as id_jugador, count(*) as num_muertes 
+                FROM kill_jugadores INNER JOIN kill_muertes
+                  ON kill_jugadores.id = kill_muertes.id_asesino
+                GROUP BY id_jugador
+                HAVING num_muertes = 3
+                ORDER BY num_muertes desc, activo asc
+               ;";
+
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+
+        $ranking3 = array();
+        while($tRegistro = $sentencia->fetch())
+        {
+             $ranking3[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
+        }
+        
+        $sql = "SELECT kill_jugadores.id as id_jugador, count(*) as num_muertes 
+                FROM kill_jugadores INNER JOIN kill_muertes
+                  ON kill_jugadores.id = kill_muertes.id_asesino
+                GROUP BY id_jugador
+                HAVING num_muertes = 2
+                ORDER BY num_muertes desc, activo asc
+               ;";
+
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+
+        $ranking2 = array();
+        while($tRegistro = $sentencia->fetch())
+        {
+             $ranking2[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
+        }
+        
+        $sql = "SELECT kill_jugadores.id as id_jugador, count(*) as num_muertes 
+                FROM kill_jugadores INNER JOIN kill_muertes
+                  ON kill_jugadores.id = kill_muertes.id_asesino
+                GROUP BY id_jugador
+                HAVING num_muertes = 1
+                ORDER BY num_muertes desc, activo asc
+               ;";
+
+        $sentencia = $conexion->prepare($sql);
+        $sentencia->execute();
+
+        while($tRegistro = $sentencia->fetch())
+        {
+             $ranking1[] = KillJugadoresPeer::retrieveByPK($tRegistro['id_jugador']);
+        }
+        
+        $this->ranking1 = $ranking1;
+        $this->ranking2 = $ranking2;
+        $this->ranking3 = $ranking3;
+        $this->ranking4 = $ranking4;
+        $this->ranking5 = $ranking5;
+        $this->ranking6 = $ranking6;
  
     }
 

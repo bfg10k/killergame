@@ -265,3 +265,23 @@ body {
 .badge-comentarios{
     cursor:pointer;
 }
+
+.fila_ranking{
+  min-height: 150px;
+  margin: auto;
+}
+
+.foto_ranking{
+  float: left;
+  padding: 10px 10px 25px 10px;
+  background: #eee;
+  border: 1px solid #fff;
+  width: 90px;
+}
+
+#ranking1{width: 590px;}
+#ranking2{width: 490px;}
+#ranking3{width: 390px;}
+#ranking4{width: 290px;}
+#ranking5{width: 190px;}
+#ranking6{width: 90px;}

@@ -25,17 +25,94 @@
      
 <div id="content-user">
   <h1>Hall of Fame</h1>
-  <?php foreach($ranking as $jugador): ?>
+  
+  <h3>Don</h3>
+  <div id="ranking6" class="fila_ranking">
+  <?php foreach($ranking6 as $jugador): ?>
     <?php if($jugador->getActivo() === 1): ?>
       <div>
-        <img width="70" class="foto_visitas foto" src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>" />
-        <p style="position: relative; bottom: 0px;">(<?php echo $jugador->countKillMuertessRelatedByIdAsesino(); ?>)</p>
+        <img width="70" class="foto_ranking foto" src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>" />
       </div>
     <?php else: ?>
       <div>
-        <img width="70" class="foto_visitas foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
-        <p style="position: relative; bottom: 0px;"><?php echo $jugador->getAlias(); ?>(<?php echo $jugador->countKillMuertessRelatedByIdAsesino(); ?>)</p>
+        <img width="70" class="foto_ranking foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
       </div>
     <?php endif ?>
   <?php endforeach; ?>
-</div>
+  </div>
+  
+  <h3>Sottocapo</h3>
+  <div id="ranking5" class="fila_ranking">
+  <?php foreach($ranking5 as $jugador): ?>
+    <?php if($jugador->getActivo() === 1): ?>
+      <div>
+        <img width="70" class="foto_ranking foto" src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>" />
+      </div>
+    <?php else: ?>
+      <div>
+        <img width="70" class="foto_ranking foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+      </div>
+    <?php endif ?>
+  <?php endforeach; ?>
+  </div>
+    
+  <h3>Consigliere</h3>
+  <div id="ranking4" class="fila_ranking">
+  <?php foreach($ranking4 as $jugador): ?>
+    <?php if($jugador->getActivo() === 1): ?>
+      <div>
+        <img width="70" class="foto_ranking foto" src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>" />
+        </div>
+    <?php else: ?>
+      <div>
+        <img width="70" class="foto_ranking foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+      </div>
+    <?php endif ?>
+  <?php endforeach; ?>
+  </div> 
+  
+  <h3>Caporegime</h3>
+  <div id="ranking3" class="fila_ranking">
+  <?php foreach($ranking3 as $jugador): ?>
+    <?php if($jugador->getActivo() === 1): ?>
+      <div>
+        <img width="70" class="foto_ranking foto" src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>" />
+      </div>
+    <?php else: ?>
+      <div>
+        <img width="70" class="foto_ranking foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+      </div>
+    <?php endif ?>
+  <?php endforeach; ?>
+  </div> 
+    
+  <h3>Capodecime</h3>
+  <div id="ranking2" class="fila_ranking">
+  <?php foreach($ranking2 as $jugador): ?>
+    <?php if($jugador->getActivo() === 1): ?>
+      <div>
+        <img width="70" class="foto_ranking foto" src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>" />
+      </div>
+    <?php else: ?>
+      <div>
+        <img width="70" class="foto_ranking foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+      </div>
+    <?php endif ?>
+  <?php endforeach; ?>
+  </div>   
+    
+  <h3>Soldato</h3>
+  <div id="ranking1" class="fila_ranking">
+  <?php foreach($ranking1 as $jugador): ?>
+    <?php if($jugador->getActivo() === 1): ?>
+      <div>
+        <img width="70" class="foto_ranking foto" src="<?php echo image_path('fotos/killer_misterioso_peq.jpg'); ?>" />
+      </div>
+    <?php else: ?>
+      <div style="position: relative;">
+        <!--<img width="70" class="sobre foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/eliminado.png'); ?>" title="<?php echo $jugador->getAlias(); ?>" />-->
+        <img width="70" class="foto_ranking foto" id="<?php echo $jugador->getId(); ?>" src="<?php echo image_path('fotos/' . $jugador->getFoto()); ?>" title="<?php echo $jugador->getAlias(); ?>" />
+      </div>
+    <?php endif ?>
+  <?php endforeach; ?>
+  </div> 
