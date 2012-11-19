@@ -279,9 +279,45 @@ body {
   width: 90px;
 }
 
-#ranking1{width: 590px;}
-#ranking2{width: 490px;}
-#ranking3{width: 390px;}
-#ranking4{width: 290px;}
-#ranking5{width: 190px;}
-#ranking6{width: 90px;}
+#ranking1{
+    width: 720px;
+    border-bottom: 100px solid rgba(6, 53, 64, .5); 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    height: 0;
+}
+#ranking2{
+    width: 570px;
+    border-bottom: 100px solid rgba(6, 53, 64, .6); 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    height: 0;
+}
+#ranking3{
+    width: 470px;
+    border-bottom: 100px solid rgba(6, 53, 64, .7); 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    height: 0;
+}
+#ranking4{
+    width: 320px;
+    border-bottom: 100px solid rgba(6, 53, 64, .8); 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    height: 0;
+}
+#ranking5{
+    width: 170px;
+    border-bottom: 100px solid rgba(6, 53, 64, .9); 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    height: 0;
+}
+#ranking6{
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid #063540;
+}
